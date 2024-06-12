@@ -1,1 +1,1 @@
-Features art from itch.io users PiiiXL, Hexany, Gowl, UnfilledFlag, and Void.
+Features art from itch.io users PiiiXL, Hexany, Gowl, UnfilledFlag, Anokolisa, and Void.
