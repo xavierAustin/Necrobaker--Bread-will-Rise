@@ -10,6 +10,43 @@
         "": {
             "scaleInDock": 1.5,
             "scaleInEditor": 1
+        },
+        "UI - Copy.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 211,
+                "y": 344.5
+            }
+        },
+        "UI - Copy.tmx#Icons": {
+            "scaleInDock": 1
+        },
+        "UI - Copy.tmx#Monsters": {
+            "scaleInDock": 1
+        },
+        "UI - Copy.tmx#UI Panels": {
+            "scaleInDock": 1
+        },
+        "UI.tmx": {
+            "expandedObjectLayers": [
+                5
+            ],
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 257.99999999999994,
+                "y": 109
+            }
+        },
+        "UI.tmx#Icons": {
+            "scaleInDock": 1.5
+        },
+        "UI.tmx#Monsters": {
+            "scaleInDock": 2
+        },
+        "UI.tmx#UI Panels": {
+            "scaleInDock": 3
         }
     },
     "last.exportedFilePath": "D:/ReposFor120/Clickedge/Cubey/assets",
@@ -24,6 +61,8 @@
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
+        "UI.tmx",
+        "UI - Copy.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.margin": 8,

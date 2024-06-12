@@ -19,9 +19,10 @@ let config = {
     render: {
         pixelArt: true  // prevent pixel art from getting blurred when scaled
     },
-    width: 800,
-    height: 600,
+    width: 1024,
+    height: 576,
     scene: [Game]
 }
 
 const game = new Phaser.Game(config);
+var player = {health:20,maxHealth:20,sheild:0,thorns:0,poison:0,stuff:[],energy:0,damage:0,sheildBuff:0,recipes:[]};
