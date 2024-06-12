@@ -9,25 +9,33 @@ class Game extends Phaser.Scene {
         this.load.image("monsterTiles", "monochrome_32x32.png"); // Packed tilemap
         this.load.image("UITiles", "bone_breakers.png"); // Packed tilemap
         this.load.image("iconTiles", "1bitIcons1.png"); // Packed tilemap
+        this.load.image("Backdrop","Background_0.png");
         this.load.tilemapTiledJSON("GUI", "UI.json");
     }
 
     create() {
+        //add background image
+        this.backdrop = this.make.image({x: 512,y: 138,key: 'Backdrop',scale:{x:2,y:2}})
+
+        //create tile map
         this.map = this.add.tilemap("GUI");
+        
+        //add images to tile map
         this.monsterlayertile = this.map.addTilesetImage("Monsters", "monsterTiles");
         this.iconlayertile = this.map.addTilesetImage("Icons", "iconTiles");
         this.uilayertile = this.map.addTilesetImage("UI Panels", "UITiles");
 
-        // Create layers
-        this.monsterlayer = this.map.createLayer("Layer2", this.monsterlayertile, 0, 0).setScale(2);
-        this.iconlayer = this.map.createLayer("Layer1", this.iconlayertile, 0, 0).setScale(2);
+        //create layers
         this.uilayer = this.map.createLayer("Layer0", this.uilayertile, 0, 0).setScale(2);
+        this.iconlayer = this.map.createLayer("Layer1", this.iconlayertile, 0, 0).setScale(2);
+        this.monsterlayer = this.map.createLayer("Layer2", this.monsterlayertile, 0, 0).setScale(2);
         //DEBUG
         player.stuff = [525,505,507,530,494,537,497,518,541,540,539,519] //231
         //DEBUG
+
         for (let i = 0; i < 8; i++)
             for (let j = 0; j < 4; j++)
-                this.iconlayer.putTileAt(player.stuff[Math.floor(Math.random()*player.stuff.length)],i+12,j+10)
+                this.iconlayer.putTileAt(player.stuff[Math.floor(Math.random()*player.stuff.length)],i+12,j+10);
 
         this.selected = [];
         

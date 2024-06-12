@@ -32,15 +32,15 @@
             "expandedObjectLayers": [
                 5
             ],
-            "scale": 1.5,
-            "selectedLayer": 0,
+            "scale": 2,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 257.99999999999994,
-                "y": 109
+                "x": 258.5,
+                "y": 123.25
             }
         },
         "UI.tmx#Icons": {
-            "scaleInDock": 1.5
+            "scaleInDock": 2
         },
         "UI.tmx#Monsters": {
             "scaleInDock": 2
