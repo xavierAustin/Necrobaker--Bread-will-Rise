@@ -30,12 +30,12 @@ class Game extends Phaser.Scene {
         this.iconlayer = this.map.createLayer("Layer1", this.iconlayertile, 0, 0).setScale(2);
         this.monsterlayer = this.map.createLayer("Layer2", this.monsterlayertile, 0, 0).setScale(2);
         //DEBUG
-        player.stuff = [525,505,507,530,494,537,497,518,541,540,539,519] //231
+        player.stuff = [525,505,507,530,494,537,497,518,541,540,539,519]
         //DEBUG
 
         for (let i = 0; i < 8; i++)
             for (let j = 0; j < 4; j++)
-                this.iconlayer.putTileAt(player.stuff[Math.floor(Math.random()*player.stuff.length)],i+12,j+10);
+                this.iconlayer.putTileAt(-1,i+12,j+10);
 
         this.selected = [];
         
@@ -44,10 +44,21 @@ class Game extends Phaser.Scene {
             let x = temp.x;
             let y = temp.y;
             let notInList = 1;
+            //check if the end turn button is clicked
+            if (x > 12 && x < 19 && y == 8){
+                //remove selected tiles
+                for (let i of this.selected)
+                    this.iconlayer.putTileAt(-1,i.x,i.y);
+                //update gui to show selected items (no selected items lol)
+                for (let i = 0; i < 5+player.energy; i ++)
+                    this.iconlayer.putTileAt(605,13+i,15);
+                this.selected = [];
+                return;
+            }
             //check if item has already been selected
             for (let i of this.selected)
                 notInList = notInList && !((x == i.x) && (y == i.y));
-            console.log(notInList)
+            console.log(x,y)
             let prev = this.selected.at(-1) || {x:x-1,y:y-1,index:-1};
             //if item is adjacent to the previously selected item, is not the previously selected item, 
             //falls within the play area, and hasn't been selected already add to selected
@@ -71,6 +82,18 @@ class Game extends Phaser.Scene {
     }
 
     update() {
-        
+        for (let i = 0; i < 8; i++)
+            for (let j = 0; j < 4; j++){
+                //check if there are any empty spaces caused by clearing tiles
+                //move cleared tile spaces to the top of the play area
+                let above = this.iconlayer.getTileAt(i+12,j+9);
+                if (this.iconlayer.getTileAt(i+12,j+10) == null &&  above != null && j){
+                    this.iconlayer.putTileAt(above,i+12,j+10);
+                    this.iconlayer.putTileAt(-1,i+12,j+9);
+                    j = 0;
+                //otherwise fill cleared tile spaces with other tiles
+                }else if (this.iconlayer.getTileAt(i+12,j+10) == null)
+                    this.iconlayer.putTileAt(player.stuff[Math.floor(Math.random()*player.stuff.length)],i+12,j+10);
+            }
     }
 }
