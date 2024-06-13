@@ -25,4 +25,4 @@ let config = {
 }
 
 const game = new Phaser.Game(config);
-var player = {health:80,maxHealth:80,sheild:0,thorns:0,poison:0,stuff:[],energy:0,damage:0,damageTemp:0,sheildBuff:0,recipes:[]};
+var player = {health:80,maxHealth:80,sheild:0,thorns:0,poison:0,stuff:[],energy:0,damage:0,damageTemp:0,sheildBuff:0,recipes:[],money:0};
