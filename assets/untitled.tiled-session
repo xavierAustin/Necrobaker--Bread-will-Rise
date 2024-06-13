@@ -3,8 +3,10 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "UI.tmx",
     "expandedProjectPaths": [
+        "tiledFiles",
+        "."
     ],
     "fileStates": {
         "": {
@@ -33,10 +35,10 @@
                 5
             ],
             "scale": 2,
-            "selectedLayer": 2,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 258.5,
-                "y": 123.25
+                "x": 412.5,
+                "y": 122.75
             }
         },
         "UI.tmx#Icons": {
@@ -58,11 +60,13 @@
     "map.tileWidth": 16,
     "map.width": 32,
     "openFiles": [
+        "UI.tmx",
+        "UI - Copy.tmx"
     ],
     "project": "untitled.tiled-project",
     "recentFiles": [
-        "UI.tmx",
-        "UI - Copy.tmx"
+        "UI - Copy.tmx",
+        "UI.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.margin": 8,

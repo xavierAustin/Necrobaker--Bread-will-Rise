@@ -1,6 +1,6 @@
-class Game extends Phaser.Scene {
+class Load extends Phaser.Scene {
     constructor() {
-        super('game');
+        super('load');
     }
 
     preload() {
@@ -16,7 +16,7 @@ class Game extends Phaser.Scene {
 
     create() {
         //TODO: switch to title
-        this.scene.start("game");
+        this.scene.start("title");
     }
 
     update() {
