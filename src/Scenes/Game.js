@@ -39,6 +39,7 @@ class Game extends Phaser.Scene {
 
         this.selected = [];
         
+        this.cakeBoost = 11;
         this.input.on('pointerdown',(ev) => {
             let temp = this.map.worldToTileXY(ev.x,ev.y);
             let x = temp.x;
@@ -46,9 +47,66 @@ class Game extends Phaser.Scene {
             let notInList = 1;
             //check if the end turn button is clicked
             if (x > 12 && x < 19 && y == 8){
-                //remove selected tiles
-                for (let i of this.selected)
+                for (let i of this.selected){
+                    //remove selected tiles
                     this.iconlayer.putTileAt(-1,i.x,i.y);
+                    //modify stats based on selected tiles
+                    switch(i.index){
+                        case 525: //apple
+                            player.health += 2;
+                            break;
+                        case 505: //pineapple
+                            player.health += 1;
+                            player.thorns += 1;
+                            break;
+                        case 507: //eggplant
+                            player.health += 5;
+                            player.thorns += 15;
+                            player.damageTemp += 15;
+                            player.poison += 20;
+                            break;
+                        case 530: //strawberry
+                            player.health += 1;
+                            player.damageTemp += 1;
+                            break;
+                        case 494: //chocolate
+                            player.damageTemp += 2;
+                            player.sheild += 2;
+                            break;
+                        case 537: //cake
+                            player.health += Math.max(this.cakeBoost--,0);
+                            break;
+                        case 497: //burger
+                            player.health -= 6;
+                            player.damageTemp += 2;
+                            player.sheild += 8;
+                            break;
+                        case 518: //bread
+                            player.health += 3;
+                            break;
+                        case 541: //fish
+                            player.sheild += 5;
+                            player.maxHealth += 0.05;
+                            break;
+                        case 540: //steak
+                            player.sheild += 5;
+                            player.damage += 0.05;
+                            break;
+                        case 539: //cheese
+                            player.damageTemp += Math.ceil(Math.random()*5);
+                            break;
+                        case 519: //egg
+                            player.health += 4;
+                            if (!Math.floor(Math.random()*5))
+                                player.poison += 15;
+                            player.sheild += 2;
+                            break;
+                        default:
+                            break;
+                    }
+                    console.log(player);
+                    //modify stats based on completed recipes [541,540,539,519]
+                }
                 //update gui to show selected items (no selected items lol)
                 for (let i = 0; i < 5+player.energy; i ++)
                     this.iconlayer.putTileAt(605,13+i,15);
@@ -82,6 +140,7 @@ class Game extends Phaser.Scene {
     }
 
     update() {
+        player.health = Math.min(player.health,player.maxHealth);
         for (let i = 0; i < 8; i++)
             for (let j = 0; j < 4; j++){
                 //check if there are any empty spaces caused by clearing tiles
