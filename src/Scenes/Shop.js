@@ -1,6 +1,6 @@
-class Game extends Phaser.Scene {
+class Shop extends Phaser.Scene {
     constructor() {
-        super('game');
+        super('shop');
     }
 
     preload() {
@@ -34,29 +34,16 @@ class Game extends Phaser.Scene {
 
         this.selected = [];
 
-        //enemy creation
-        this.enemies = [Math.floor(Math.random()*(2+LEVEL)),Math.floor(Math.random()*LEVEL)+1,Math.floor(Math.random()*(3+LEVEL))];
-        for (let i = 0; i<3; i++)
-            switch (this.enemies[i]){
-                case (1): // squid
-                    this.monsterlayer.putTileAt(37,11+4*i,4);
-                    this.monsterlayer.putTileAt(38,12+4*i,4);
-                    this.monsterlayer.putTileAt(53,11+4*i,5);
-                    this.monsterlayer.putTileAt(54,12+4*i,5);
-                    break;
-                default: // no enemy
-                    this.iconlayer.putTileAt(-1,11+4*i,2);
-                    this.iconlayer.putTileAt(-1,12+4*i,2);
-                    this.iconlayer.putTileAt(-1,11+4*i,3);
-                    this.iconlayer.putTileAt(-1,12+4*i,3);
-                    this.iconlayer.putTileAt(-1,11+4*i,4);
-                    this.iconlayer.putTileAt(-1,12+4*i,4);
-                    this.iconlayer.putTileAt(-1,11+4*i,5);
-                    this.iconlayer.putTileAt(-1,12+4*i,5);
-                    this.iconlayer.putTileAt(-1,11+4*i,6);
-                    this.iconlayer.putTileAt(-1,12+4*i,6);
-                    break;
-            }
+        //remove battle ui elements
+        for (let i = 0; i<3; i++){
+            this.iconlayer.putTileAt(-1,11+4*i,2);
+            this.iconlayer.putTileAt(-1,12+4*i,2);
+            this.iconlayer.putTileAt(-1,11+4*i,3);
+            this.iconlayer.putTileAt(-1,12+4*i,3);
+            this.iconlayer.putTileAt(-1,11+4*i,6);
+            this.iconlayer.putTileAt(-1,12+4*i,6);
+        }
+        //add shop ui elements
 
         this.cakeBoost = 11;
         this.input.on('pointerdown',(ev) => {
@@ -177,26 +164,5 @@ class Game extends Phaser.Scene {
 
     update() {
         player.health = Math.min(player.health,player.maxHealth);
-        for (let i = 0; i < 8; i++)
-            for (let j = 0; j < 4; j++){
-                //check if there are any empty spaces caused by clearing tiles
-                //move cleared tile spaces to the top of the play area
-                let above = this.iconlayer.getTileAt(i+12,j+9);
-                if (this.iconlayer.getTileAt(i+12,j+10) == null &&  above != null && j){
-                    this.iconlayer.putTileAt(above,i+12,j+10);
-                    this.iconlayer.putTileAt(-1,i+12,j+9);
-                    j = 0;
-                //otherwise fill cleared tile spaces with other tiles
-                }else if (this.iconlayer.getTileAt(i+12,j+10) == null)
-                    this.iconlayer.putTileAt(player.stuff[Math.floor(Math.random()*player.stuff.length)],i+12,j+10);
-            }
-    }
-
-    effectHandler(val){
-        switch(val){
-            default:
-            console.log("this is a debug effect. if you are seeing this console message... well... you shouldn't be.");
-                break;
-        }
     }
 }
