@@ -12,10 +12,10 @@ class Load extends Phaser.Scene {
         this.load.tilemapTiledJSON("GUI", "UI.json");
         //load backdrop image
         this.load.image("Backdrop","background.png");
+        //load sounds
     }
 
     create() {
-        //TODO: switch to title
         this.scene.start("title");
     }
 

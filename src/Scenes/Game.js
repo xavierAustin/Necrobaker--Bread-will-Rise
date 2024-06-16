@@ -44,6 +44,36 @@ class Game extends Phaser.Scene {
                     this.monsterlayer.putTileAt(53,11+4*i,5);
                     this.monsterlayer.putTileAt(54,12+4*i,5);
                     break;
+                case (2): // plant
+                    this.monsterlayer.putTileAt(101,11+4*i,4);
+                    this.monsterlayer.putTileAt(102,12+4*i,4);
+                    this.monsterlayer.putTileAt(117,11+4*i,5);
+                    this.monsterlayer.putTileAt(118,12+4*i,5);
+                    break;
+                case (3): // zombie
+                    this.monsterlayer.putTileAt(111,11+4*i,4);
+                    this.monsterlayer.putTileAt(112,12+4*i,4);
+                    this.monsterlayer.putTileAt(127,11+4*i,5);
+                    this.monsterlayer.putTileAt(128,12+4*i,5);
+                    break;
+                case (4): // mold
+                    this.monsterlayer.putTileAt(205,11+4*i,4);
+                    this.monsterlayer.putTileAt(206,12+4*i,4);
+                    this.monsterlayer.putTileAt(221,11+4*i,5);
+                    this.monsterlayer.putTileAt(222,12+4*i,5);
+                    break;
+                case (5): // abyss
+                    this.monsterlayer.putTileAt(211,11+4*i,4);
+                    this.monsterlayer.putTileAt(212,12+4*i,4);
+                    this.monsterlayer.putTileAt(227,11+4*i,5);
+                    this.monsterlayer.putTileAt(228,12+4*i,5);
+                    break;
+                case (6): // carbuncle
+                    this.monsterlayer.putTileAt(113,11+4*i,4);
+                    this.monsterlayer.putTileAt(114,12+4*i,4);
+                    this.monsterlayer.putTileAt(129,11+4*i,5);
+                    this.monsterlayer.putTileAt(130,12+4*i,5);
+                    break;
                 default: // no enemy
                     this.iconlayer.putTileAt(-1,11+4*i,2);
                     this.iconlayer.putTileAt(-1,12+4*i,2);
