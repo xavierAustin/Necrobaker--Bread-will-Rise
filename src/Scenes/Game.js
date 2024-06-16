@@ -35,9 +35,9 @@ class Game extends Phaser.Scene {
         this.selected = [];
 
         //enemy creation
-        this.enemies = [Math.floor(Math.random()*(2+LEVEL)),Math.floor(Math.random()*LEVEL)+1,Math.floor(Math.random()*(3+LEVEL))];
+        this.enemies = [Math.floor(Math.random()*(2+LEVEL)+LEVEL/10),Math.floor(Math.random()*LEVEL+LEVEL/10)+1,Math.floor(Math.random()*(3+LEVEL)+LEVEL/10)];
         for (let i = 0; i<3; i++)
-            switch (this.enemies[i]){
+            switch (Math.min(this.enemies[i],6)){
                 case (1): // squid
                     this.monsterlayer.putTileAt(37,11+4*i,4);
                     this.monsterlayer.putTileAt(38,12+4*i,4);
@@ -62,17 +62,17 @@ class Game extends Phaser.Scene {
                     this.monsterlayer.putTileAt(221,11+4*i,5);
                     this.monsterlayer.putTileAt(222,12+4*i,5);
                     break;
-                case (5): // abyss
-                    this.monsterlayer.putTileAt(211,11+4*i,4);
-                    this.monsterlayer.putTileAt(212,12+4*i,4);
-                    this.monsterlayer.putTileAt(227,11+4*i,5);
-                    this.monsterlayer.putTileAt(228,12+4*i,5);
-                    break;
-                case (6): // carbuncle
+                case (5): // carbuncle
                     this.monsterlayer.putTileAt(113,11+4*i,4);
                     this.monsterlayer.putTileAt(114,12+4*i,4);
                     this.monsterlayer.putTileAt(129,11+4*i,5);
                     this.monsterlayer.putTileAt(130,12+4*i,5);
+                    break;
+                case (6): // abyss
+                    this.monsterlayer.putTileAt(211,11+4*i,4);
+                    this.monsterlayer.putTileAt(212,12+4*i,4);
+                    this.monsterlayer.putTileAt(227,11+4*i,5);
+                    this.monsterlayer.putTileAt(228,12+4*i,5);
                     break;
                 default: // no enemy
                     this.iconlayer.putTileAt(-1,11+4*i,2);
@@ -87,8 +87,14 @@ class Game extends Phaser.Scene {
                     this.iconlayer.putTileAt(-1,12+4*i,6);
                     break;
             }
+        
+        //remove shop UI elements
+        this.iconlayer.putTileAt(-1,24,16);
+        this.iconlayer.putTileAt(-1,26,16);
 
+        //cake tile has fall off healing so that's what this is for
         this.cakeBoost = 11;
+        //handle on click events
         this.input.on('pointerdown',(ev) => {
             let temp = this.map.worldToTileXY(ev.x,ev.y);
             let x = temp.x;
@@ -195,6 +201,7 @@ class Game extends Phaser.Scene {
             else
                 this.selected = [];
             console.log(this.iconlayer.getTileAt(x,y))
+            console.log(ev.x,ev.y)
             //update gui to show selected items
             for (let i = 0; i < 5+player.energy; i ++){
                 if(this.selected[i])
@@ -203,9 +210,22 @@ class Game extends Phaser.Scene {
                     this.iconlayer.putTileAt(605,13+i,15);
             }
         });
+
+        this.miscText = [
+            this.add.text(816,78,"Recipes",{fontFamily:"'NIGHTIE'",color:"white",fontSize: 40}).setOrigin(0.5),
+            this.add.text(208,78,"Log",{fontFamily:"'NIGHTIE'",color:"white",fontSize: 40}).setOrigin(0.5),
+            this.add.text(512,280,"End Turn",{fontFamily:"'NIGHTIE'",color:"white",fontSize: 40}).setOrigin(0.5)
+        ];
+        this.logText = {
+            str: "",
+            off: 0,
+            vis: this.add.text(208,492,"1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15",{fontFamily:"'FOOL'",color:"white",fontSize: 24}).setOrigin(0.5,1)
+        };
+        this.statText = this.add.text(208,78,"Log",{fontFamily:"'NIGHTIE'",color:"white",fontSize: 40}).setOrigin(0.5)
     }
 
     update() {
+        //quick and dirty way to cap player health and manage play area (not great for optimization but good enough)
         player.health = Math.min(player.health,player.maxHealth);
         for (let i = 0; i < 8; i++)
             for (let j = 0; j < 4; j++){
@@ -228,5 +248,16 @@ class Game extends Phaser.Scene {
             console.log("this is a debug effect. if you are seeing this console message... well... you shouldn't be.");
                 break;
         }
+    }
+
+    updateLog(newString){
+        this.logText.str += "\n"+newString;
+        this.logText.off = 0;
+        this.logText.vis.setText(this.logText.str);
+    }
+
+    scrollLog(newOff){
+        this.logText.off = newOff;
+        this.logText.vis.setText();
     }
 }

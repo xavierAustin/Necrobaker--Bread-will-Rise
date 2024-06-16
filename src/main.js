@@ -1,14 +1,3 @@
-// Jim Whitehead
-// Created: 4/14/2024
-// Phaser: 3.70.0
-//
-// Cubey
-//
-// An example of putting sprites on the screen using Phaser
-// 
-// Art assets from Kenny Assets "Shape Characters" set:
-// https://kenney.nl/assets/shape-characters
-
 // debug with extreme prejudice
 "use strict"
 
@@ -36,7 +25,30 @@ var player = {
     damage:0,
     damageTemp:0,
     sheildBuff:0,
-    recipes:[{name:"debug",desc:"thing to be printed to the screen",effect:1,cost:[525,525,525],temp:[]}],
+    recipes:[],
     money:4
 };
 var LEVEL = 0;
+const RECIPES = [
+    {
+        name:"Voodoo Burger",
+        desc:"Fistuned with fried goat jowl. Replace one tile with a burger tile. Deal 45 damage to the target enemy. Gain 15 sheild. Reduce your maximum hp by 5.",
+        effect: 0,
+        cost:[525,525,525],
+        temp:[]
+    },
+    {
+        name:"Sinnful Cake",
+        desc:"Decadent and deadly. Replace one tile with a cake tile. Deal 20 damage to the target enemy. Apply 20 poison. Take 10 damage.",
+        effect: 1,
+        cost:[525,525,525],
+        temp:[]
+    },
+    {
+        name:"Eden's Fruit Salad",
+        desc:"Drive away both gods grace and doctors. Replace 3 tiles with rot. Increase your maximum hp by 5. Increase your passive damage by 5. Gain 5 thorns.  Gain 15 sheild.",
+        effect: 2,
+        cost:[525,525,525],
+        temp:[]
+    }
+];

@@ -8,7 +8,7 @@ class Title extends Phaser.Scene {
     }
 
     create() {
-        var player = {
+        player = {
             health:80,
             maxHealth:80,
             sheild:0,
@@ -22,7 +22,7 @@ class Title extends Phaser.Scene {
             recipes:[{name:"debug",desc:"thing to be printed to the screen",effect:1,cost:[525,525,525],temp:[]}],
             money:4
         };
-        var LEVEL = 0;
+        LEVEL = 0;
     }
 
     update() {
